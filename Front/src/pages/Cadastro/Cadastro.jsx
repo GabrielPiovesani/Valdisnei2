@@ -7,7 +7,7 @@ import LoginHeader from '../../components/LoginMenu/LoginHeader.jsx';
 
 export default function Cadastro(){
   return(<div>
-    <Header></Header>
+    <LoginHeader/>
     <Formulario></Formulario>
     <Footer/>
     </div>

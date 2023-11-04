@@ -58,8 +58,8 @@ function Formulario() {
 
 
   return (
-      <div className="d-flex justify-content-center mt-0" >
-        <Form className="formCadastro"  onSubmit={handleSubmit}>
+      <div className="d-flex justify-content-center mt-5" >
+        <Form className="formCadastro p-4 m-3" onSubmit={handleSubmit} style={{border:'red 3px solid'}}>
           <h4>Criar Conta</h4>
           <div className="textcadastro" style={{ color: 'white' }}>
             <p>Crie a sua única conta para todos os produtos ValDisnei</p>
