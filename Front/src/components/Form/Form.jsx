@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 const Form = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [emailErr, setEmailErr] = useState(false);
+  const userData = {email: email, senha: senha,};
 
   const FormValidacao = () => {
     // Implemente a lógica de validação aqui
@@ -15,18 +17,13 @@ const Form = () => {
 
     // Aqui você pode fazer uma solicitação para o seu back-end para autenticar o usuário
     try {
-      const response = await fetch('http://localhost:8090/usuarios/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, senha }),
-      });
+      const response = await axios.post('http://localhost:8090/usuarios/login', userData);
 
-      if (response.ok) {
-        // O login foi bem-sucedido, redirecione ou realize a ação desejada
+
+      if (response.status === 201) {
+        console.log('login foi bem-sucedido, redirecione ou realize a ação desejada');
       } else {
-        // Exiba uma mensagem de erro se as credenciais estiverem incorretas
+        console.log('nao caiu no if');
         setEmailErr(true);
       }
     } catch (error) {
