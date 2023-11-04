@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root{
+  color: aliceblue;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  
+
+}
+body{
+  background-color: #04153d !important;
+
+}
+
+h1, h2, h3, h4, h5, h6, a , span{
+  color: #f8f8f8;
+}
+
+
+
+/* === Configuraçoes da página Login === */ 
+.Login-background {
+  background-image: url(../src/assets/img/fundoImg.png) !important;
+  width: 100vw;
+  height: 100vh;
+
+}
+button .btn btn-info{
+  display: flex;
+  margin-top: 78%;
+}
+.containerLogin{
+  margin-top: 60px;
+}
+
+/* == Configuraçoes pagina cadastro == */
+.form-control{min-width:250px;}
+.btnFormulario{
+  margin-top: 10px;
+}
+.formCadastro{
+  height: 530px;
+}
+.textcadastro{
+  text-align: center;
+}
+
+/* == Configuraçoes pagina home == */
+.mb-3:hover{
+  border: 1px solid #102453;
+  background-color: #0c1c3d;
+  border-radius: 10px;
+}
+
+
+
