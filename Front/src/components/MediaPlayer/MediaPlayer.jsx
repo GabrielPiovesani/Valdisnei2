@@ -13,15 +13,6 @@ function MediaPlayer() {
   const [currentArtista, setArtista] = useState("");
 
 
-  useEffect(() => {
-    fetch(`${apiUrl}/playlists`)
-      .then((response) => response.json())
-      .then((data) => setPlaylists(data));
-  }, []);
-
-
-
-
   function handlePlayClick() {
     setIsPlaying(!isPlaying);
   }

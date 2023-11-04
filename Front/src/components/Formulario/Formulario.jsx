@@ -47,7 +47,7 @@ function Formulario() {
           setShowFeedback(true);
           setFeedbackMsg(error.response.data.mensagem);
         } else {
-          console.error(error);
+          console.log(error.response && error.response.data);
           setShowFeedback(true);
           setFeedbackMsg("Erro ao fazer a solicitação.");
         }

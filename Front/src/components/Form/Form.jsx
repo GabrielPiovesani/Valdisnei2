@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import {Alert} from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const Form = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [emailErr, setEmailErr] = useState(false);
   const userData = {email: email, senha: senha,};
-
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
   const FormValidacao = () => {
     // Implemente a lógica de validação aqui
   };
@@ -20,17 +29,28 @@ const Form = () => {
       const response = await axios.post('http://localhost:8090/usuarios/login', userData);
 
 
-      if (response.status === 201) {
-        console.log('login foi bem-sucedido, redirecione ou realize a ação desejada');
-      } else {
-        console.log('nao caiu no if');
-        setEmailErr(true);
+      if (response.status === 200) {
+        console.log(response.data.nome)
+        navigate('/home');
+        setUsername(response.data.nome);// Define loggedIn como true quando o login for bem-sucedido
+
+
+      } else if(response.data) {
+        setShowFeedback(true);
+        setFeedbackMsg(response.data.mensagem);
+        console.log(response.data.mensagem);
       }
+
     } catch (error) {
-      console.error('Erro na autenticação:', error);
-      setEmailErr(true);
-    }
-  };
+      if (error.response && error.response.data) {
+        setShowFeedback(true);
+        setFeedbackMsg(error.response.data.mensagem);
+      } else {
+        console.error(error);
+        setShowFeedback(true);
+        setFeedbackMsg("Erro ao fazer a solicitação.");
+      }
+  }};
 
   return (
       <div className="d-flex justify-content-center align-items-center vh-100">
@@ -48,8 +68,13 @@ const Form = () => {
                 placeholder="Email"
                 style={{ color: '#000' }}
             />
-            {emailErr && <p style={{ color: 'red' }}>Por favor, digite um email válido!</p>}
+
           </div>
+          {showFeedback && (
+              <Alert variant={feedbackMsg.includes("sucesso") ? "success" : "danger"} onClose={() => setShowFeedback(false)} dismissible>
+                {feedbackMsg.includes("sucesso") ? "Sucesso: " : "Erro: "}{feedbackMsg}
+              </Alert>
+          )}
           <div className="form-group mb-4">
             <label style={{ color: '#ccc' }}>Senha</label>
             <input
@@ -70,6 +95,7 @@ const Form = () => {
               Não tem uma conta? <Link to="/cadastro" style={{ color: '#00A0E4' }}>Assine</Link>
             </p>
           </div>
+          {loggedIn && <Redirect to="/catalago" />}
         </form>
       </div>
   );

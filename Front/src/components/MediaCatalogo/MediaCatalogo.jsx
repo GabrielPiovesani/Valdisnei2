@@ -12,7 +12,7 @@ import { proxy as apiUrl } from '../../../package.json';
 
 
 export default function MediaCatalogo() {
-  // Defina o estado inicial dos dados da galeria de mídias
+
 
 
   const [series, setSeries] = useState([
@@ -64,18 +64,6 @@ export default function MediaCatalogo() {
   ]);
   
   const [music, setMusic] = useState([]);
-  
-  useEffect(() => {
-    fetch(`${apiUrl}/musica`)
-      .then((response) => response.json())
-      .then((data) => setMusic(data));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${apiUrl}/filme`)
-      .then((response) => response.json())
-      .then((data) => setMovies(data));
-  }, []);
   
   return (
     <Container className="mt-5">
