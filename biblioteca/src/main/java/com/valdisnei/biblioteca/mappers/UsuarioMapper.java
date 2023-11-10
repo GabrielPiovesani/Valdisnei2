@@ -1,7 +1,7 @@
 package com.valdisnei.biblioteca.mappers;
 
 import com.valdisnei.biblioteca.dtos.usuarios.UsuarioDTO;
-import com.valdisnei.biblioteca.model.Usuario;
+import com.valdisnei.biblioteca.model.usuarios.Usuario;
 
 public class UsuarioMapper {
 

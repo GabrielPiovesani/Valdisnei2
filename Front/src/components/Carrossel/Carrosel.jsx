@@ -18,16 +18,16 @@ function CarroselPage() {
     <div>
 
 
-    <Carousel className='mt-3' width-100 activeIndex={index} onSelect={handleSelect}>
+    <Carousel className='mt-3' activeIndex={index} onSelect={handleSelect}>
 
       <Carousel.Item>
-        <img className="d-block w-100" src={Img1}alt="First slide"/>
+        <img className="d-block" src={Img1}alt="First slide"/>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Img2} alt="Second slide"/>
+        <img className="d-block" src={Img2} alt="Second slide"/>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Img3} alt="Third slide"/>
+        <img className="d-block" src={Img3} alt="Third slide"/>
       </Carousel.Item>
       </Carousel>
      </div>

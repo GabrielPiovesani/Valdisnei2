@@ -1,4 +1,4 @@
-package com.valdisnei.biblioteca.model;
+package com.valdisnei.biblioteca.model.usuarios;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,4 +17,8 @@ public class Usuario {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "plano_id")
+    private Plano plano;
 }

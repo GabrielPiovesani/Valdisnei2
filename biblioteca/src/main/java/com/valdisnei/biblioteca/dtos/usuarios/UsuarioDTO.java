@@ -1,6 +1,7 @@
 package com.valdisnei.biblioteca.dtos.usuarios;
 
 
+import com.valdisnei.biblioteca.dtos.planos.PlanoDTO;
 import lombok.*;
 
 @Data
@@ -12,5 +13,6 @@ public class UsuarioDTO {
     private String nome;
     private String senha;
     private String email;
+
 }
 
