@@ -3,8 +3,8 @@ package com.valdisnei.biblioteca.controller;
 
 import com.valdisnei.biblioteca.dtos.usuarios.LoginDTO;
 import com.valdisnei.biblioteca.dtos.usuarios.UsuarioDTO;
+import com.valdisnei.biblioteca.exception.CredenciaisInvalidasException;
 import com.valdisnei.biblioteca.service.UsuarioService;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -90,13 +90,13 @@ public class UsuarioController {
     @Operation(summary = "Login de usuário")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Login bem-sucedido"),
-            @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
+            @ApiResponse(responseCode = "401", description = "Credenciais inválidas"),
     })
     public ResponseEntity<UsuarioDTO> loginUsuario(@Valid @RequestBody LoginDTO loginDTO) {
-        UsuarioDTO usuarioLogado = usuarioService.loginUsuario(loginDTO);
-        if (usuarioLogado != null) {
+        try {
+            UsuarioDTO usuarioLogado = usuarioService.loginUsuario(loginDTO);
             return ResponseEntity.ok(usuarioLogado);
-        } else {
+        } catch (CredenciaisInvalidasException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
